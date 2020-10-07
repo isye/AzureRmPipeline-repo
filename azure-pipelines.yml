@@ -1,23 +1,5 @@
-# Starter pipeline
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'AzureRmPipeline-conn'
-    subscriptionId: 'd5649c49-098d-45b6-b61d-3c57de945cd5'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'myResourceGroupDev'
-    location: 'East US'
-    templateLocation: 'Linked artifact'
-    csmFile: 'CreateWebApp/azuredeploy.json'
-    overrideParameters: '-projectName iaproj -linkedTemplateUri https://raw.githubusercontent.com/isye/AzureRmPipeline-repo/main/CreateWebApp/linkedStorageAccount.json'
-    deploymentMode: 'Incremental'
-    deploymentName: 'DeployPipelineTemplate'
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- master
+- main
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -33,6 +15,6 @@ steps:
     location: 'East US'
     templateLocation: 'Linked artifact'
     csmFile: 'CreateWebApp/azuredeploy.json'
-    overrideParameters: '-projectName iaproj -linkedTemplateUri https://github.com/isye/AzureRmPipeline-repo/blob/main/CreateWebApp/linkedStorageAccount.json'
+    overrideParameters: '-projectName iaproj -linkedTemplateUri https://raw.githubusercontent.com/isye/AzureRmPipeline-repo/main/CreateWebApp/linkedStorageAccount.json'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
